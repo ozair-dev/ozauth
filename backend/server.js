@@ -14,6 +14,7 @@ const bodyParser = require("body-parser")
 const morgan = require('morgan')
 const session = require('express-session')
 const cors = require('cors')
+const path = require("path")
 const passport = require('passport')
 const myDB = require("./connection")
 const auth = require("./auth")
@@ -35,12 +36,14 @@ app.use(cors())
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json())
 app.use(morgan('dev'))
-
+app.use(express.static(path.join(__dirname, 'build')));
 myDB(async (client) => {
 	let userDB = await client.db('practice').collection('users');
 	auth(userDB)
 	app.use("/api", api(userDB))
-	
+	app.get('/', function (req, res) {
+	  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+	});
 	}).catch((e)=>{
     app.route('/').get((req, res)=>{
     	res.send("Error loading the page")
