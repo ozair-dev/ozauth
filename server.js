@@ -41,8 +41,8 @@ myDB(async (client) => {
 	let userDB = await client.db('practice').collection('users');
 	auth(userDB)
 	app.use("/api", api(userDB))
-	app.get('/', function (req, res) {
-	  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+	app.get('*', function (req, res) {
+	  res.sendFile(path.join(__dirname+ '/client/build/index.html'));
 	});
 	}).catch((e)=>{
     app.route('/').get((req, res)=>{
