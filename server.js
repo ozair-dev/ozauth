@@ -37,6 +37,7 @@ app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json())
 app.use(morgan('dev'))
 app.use(express.static(path.join(__dirname, 'build')));
+app.use(express.static('public'))
 myDB(async (client) => {
 	let userDB = await client.db('practice').collection('users');
 	auth(userDB)
