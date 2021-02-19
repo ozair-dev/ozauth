@@ -41,7 +41,7 @@ myDB(async (client) => {
 	let userDB = await client.db('practice').collection('users');
 	auth(userDB)
 	if (process.env.NODE_ENV === 'production') {
-	    app.use("*",express.static('client/build'));
+	    app.use(express.static('client/build'));
 	}
 	app.use("/api", api(userDB))
 	}).catch((e)=>{
