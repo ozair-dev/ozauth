@@ -36,15 +36,14 @@ app.use(cors())
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json())
 app.use(morgan('dev'))
-app.use(express.static(path.join(__dirname, 'build')));
-app.use(express.static(path.join(__dirname+"/client/public")))
+
 myDB(async (client) => {
 	let userDB = await client.db('practice').collection('users');
 	auth(userDB)
+	if (process.env.NODE_ENV === 'production') {
+	    app.use(express.static('client/build'));
+	}
 	app.use("/api", api(userDB))
-	app.get('*', function (req, res) {
-	  res.sendFile(path.join(__dirname+ '/client/build/index.html'));
-	});
 	}).catch((e)=>{
     app.route('/').get((req, res)=>{
     	res.send("Error loading the page")
