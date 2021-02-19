@@ -34,7 +34,7 @@ export default withRouter(
             <Route path="/" exact render={()=>(<div>
               <p className="text-5xl font-mono text-purple-500 text-center font-extrabold">Welcome</p>
               {this.state.loggedIn?(<p className="font-mono text-2xl mt-4 text-purple-700 text-center">Hy <b>{this.state.user.name}</b>, How Are You!</p>):
-              (<Link  className="w-2/4 block mx-auto shadow-md p-2 border-solid border-2 border-purple-400 rounded-md mt-8 font-mono text-center text-lg text-purple-700" to="/login">Go To Login Page</Link>)}
+              (<Link  className="w-3/4 sm:w-2/4 block mx-auto shadow-md p-2 border-solid border-2 border-purple-400 rounded-md mt-8 font-mono text-center text-lg text-purple-700" to="/login">Go To Login Page</Link>)}
             </div>) } />
             <Route path="/login" render={()=><Login state={this.state} history={this.props.history} updateUser = {this.updateUser} /> } />
             <Route path="/signup" render={()=><Signup state={this.state} history= {this.props.history} /> } />
