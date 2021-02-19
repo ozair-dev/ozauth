@@ -29,7 +29,10 @@ module.exports = (userDB)=>{
 	  			username: profile.id
 	  		},
 	  		$set: {
-	  			last_login: new Date()
+	  			last_login: new Date(),
+	  			login_count: {
+	  				$inc: 1
+	  			}
 	  		}
 	  	},{upsert: true, new: true}, (err, data)=>{
 	  		if(err) return console.log(err);
@@ -57,7 +60,10 @@ module.exports = (userDB)=>{
 							username: profileData.id
 						},
 						$set: {
-							last_login: new Date()
+							last_login: new Date(),
+							login_count: {
+				  				$inc: 1
+				  			}
 						}
 					}, 
 					{
@@ -89,7 +95,10 @@ module.exports = (userDB)=>{
 				name: profileData.name
 			},
 			$set: {
-				last_login: new Date()
+				last_login: new Date(),
+				login_count: {
+	  				$inc: 1
+	  			}
 			}
 		},
 		{upsert: true,new: true},(err, user)=>{
