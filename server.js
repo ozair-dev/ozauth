@@ -1,4 +1,4 @@
-process.env.MONGO_URI="mongodb://ozair_ayaz:ozair_03235146562@cluster0-shard-00-00.m4fyc.mongodb.net:27017,cluster0-shard-00-01.m4fyc.mongodb.net:27017,cluster0-shard-00-02.m4fyc.mongodb.net:27017/<dbname>?ssl=true&replicaSet=atlas-92jndn-shard-0&authSource=admin&retryWrites=true&w=majority"
+process.env.MONGO_URI="mongodb://ozair_ayaz:ozair_03235146562@cluster0-shard-00-00.m4fyc.mongodb.net:27017,cluster0-shard-00-01.m4fyc.mongodb.net:27017,cluster0-shard-00-02.m4fyc.mongodb.net:27017/auth?ssl=true&replicaSet=atlas-92jndn-shard-0&authSource=admin&retryWrites=true&w=majority"
 process.env.FACEBOOK_CLIENT_ID="203742888108497";
 process.env.FACEBOOK_CLIENT_SECRET="642045368df770d3a3d2b4028788aad8";
 process.env.FACEBOOK_CALLBACK_URL="https://ozauth.herokuapp.com/api/user/auth/facebook/callback";
