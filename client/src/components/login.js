@@ -16,6 +16,7 @@ export default class Login extends React.Component {
 		}
 	}
 	handleChange = (e)=>{
+		this.setState({warning: ""})
 		let data = this.state.formData
 		data[e.target.name] = e.target.value;
 		this.setState({formData: data})
@@ -27,7 +28,12 @@ export default class Login extends React.Component {
 		else if(!formData.password) return this.setState({warning: "Password is required"});
 		this.setState({warning: ""})
 		axios.post("/api/user", formData)
-		.then(res=>(res.data && this.props.updateUser(res.data)))
+		.then(res=>{
+			if(res.data){
+				this.props.updateUser(res.data)
+				this.props.history.push("/")
+			}
+		})
 		.catch(err=>this.setState({warning: "Invalid username or password"}))
 	}
 	render() {
