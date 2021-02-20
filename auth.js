@@ -23,7 +23,7 @@ module.exports = (userDB)=>{
 	    clientSecret: process.env.GITHUB_CLIENT_SECRET,
 	    callbackURL: process.env.GITHUB_CALLBACK_URL
 	  }, function(accessToken, refreshToken, profile, cb){
-	  	userDB.findOneAndUpdate({username: profile.id},{
+	  	userDB.findAndModify({username: profile.id},{},{
 	  		$setOnInsert: {
 	  			name: profile.username,
 	  			username: profile.id
@@ -53,7 +53,7 @@ module.exports = (userDB)=>{
 			(accessToken, refreshToken, profile, done)=>{
 				let profileData = profile._json;
 				let name = `${profileData.first_name} ${profileData.last_name}`
-				userDB.findOneAndUpdate({username: profileData.id},
+				userDB.findAndModify({username: profileData.id},{},
 					{
 						$setOnInsert: {
 							name: name,
@@ -103,7 +103,6 @@ module.exports = (userDB)=>{
 		},
 		{upsert: true,new: true},(err, user)=>{
 			if(err) return console.log(err);
-			console.log("user", user)
 			cb(null, user.value)
 		})
 	}))
