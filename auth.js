@@ -116,7 +116,7 @@ module.exports = (userDB)=>{
 		console.log("Deserializing User")
 		userDB.findOne({_id: new ObjectID(id)}, (err, user)=>{
 			if(err) return done(null, err);
-			delete user.password
+			if(user.password) delete user.password;
 			done(null, user)
 		})
 	})
