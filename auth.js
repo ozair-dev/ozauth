@@ -103,6 +103,7 @@ module.exports = (userDB)=>{
 		},
 		{upsert: true,new: true},(err, user)=>{
 			if(err) return console.log(err);
+			console.log(user)
 			cb(null, user.value)
 		})
 	}))
