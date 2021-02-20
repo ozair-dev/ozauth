@@ -86,11 +86,10 @@ module.exports = (userDB)=>{
 		callbackURL: process.env.GOOGLE_CALLBACK_URL,
 		userProfileURL: "https://www.googleapis.com/oauth2/v3/userinfo"
 	}, (accessToken, refreshToken, profile, cb)=>{
-		console.log("fb strategy called")
 		let profileData = profile._json
-		userDB.findOneAndUpdate({
+		userDB.findAndModify({
 			username: profileData.email
-		}, {
+		},{}, {
 			$setOnInsert: {
 				username: profileData.email,
 				name: profileData.name
