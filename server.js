@@ -44,6 +44,9 @@ myDB(async (client) => {
 	    app.use(express.static('client/build'));
 	}
 	app.use("/api", api(userDB))
+	app.get("*", (req, res)=>{
+		res.redirect("/")
+	})
 	}).catch((e)=>{
     app.route('/').get((req, res)=>{
     	res.send("Error loading the page")
