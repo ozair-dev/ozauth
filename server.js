@@ -27,7 +27,10 @@ app.use(
 		secret: "pptx",
 		store: store,
 		resave: true, 
-		saveUninitialized: true
+		saveUninitialized: true,
+		cookie: {
+			maxAge: 2592000000
+		}
 	})
 )
 app.use(passport.initialize())
